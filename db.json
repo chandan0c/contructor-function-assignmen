@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "name": "jeans",
+      "catagory": "clothing",
+      "image": "https://img.faballey.com/images/product/CTP00612D/1.JPG",
+      "price": "1500",
+      "gender": "men",
+      "sold": "true",
+      "id": 1
+    },
+    {
+      "name": "jeans",
+      "catagory": "clothing",
+      "image": "https://img.faballey.com/images/product/CTP00612D/1.JPG",
+      "price": "1500",
+      "gender": "men",
+      "sold": "true",
+      "id": 2
+    }
+  ]
+}

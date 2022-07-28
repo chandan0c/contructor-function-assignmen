@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #sold{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>all the listed product will be shown here</h1>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    async function myfun1(){
+        let data=await fetch("http://localhost:3000/products");
+        data=await data.json();
+       displayFun(data)
+    }
+    myfun1();
+    function displayFun(data){
+        data.forEach(data => {
+           let image=document.createElement("img");
+           image.src=data.image;
+           let title=document.createElement("p");
+           title.innerText=`title: ${data.name}`;
+           let catagory=document.createElement("p");
+           catagory.innerText=`category: ${data.catagory}`;
+           let price=document.createElement("p");
+           price.innerText=`price: ${data.price}`;
+           let remove=document.createElement("button");
+           remove.innerText="remove"
+           let sold=document.createElement("button");
+           sold.setAttribute("id","sold")
+           sold.innerText="sold";
+           let count=0;
+           sold.addEventListener("click",function(){
+              if(count%2==0){
+                sold.style.backgroundColor="red";
+              }
+              else{
+                sold.style.backgroundColor="green";
+              }
+              count++;
+           })
+           let container=document.getElementById("container");
+           container.append(image,title,catagory,price,remove,sold)
+           remove.addEventListener("click",function(){
+              removeItem(data.id);
+           })
+        })
+    }
+    async function removeItem(id){
+        fetch('http://localhost:3000/products/'+ id, {
+        method: 'DELETE',
+        })
+    }
+</script>

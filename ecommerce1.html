@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecommerce 1 page</title>
+    <style>
+        input,select,button{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>enter your product details here</h1>
+        <input type="text" placeholder="enter produnct name" id="name"> <br>
+        <input type="text" placeholder="enter product catagory" id="category"> <br>
+        <input type="text" placeholder="paste your image url here" id="image"><br>
+        <input type="text" placeholder="enter product price here" id="price"><br>
+        <select name="" id="gender"> <br>
+            <option value="men">men</option>
+            <option value="women">women</option>
+            <option value="kids">kids</option>
+        </select><br>
+        <select name="" id="sold"><br>
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <button onclick="inputFun()">add to product</button>
+    </div>
+</body>
+</html>
+<script>
+    function inputFun(){
+        event.preventDefault()
+        let name=document.getElementById("name").value;
+        let catagory=document.getElementById("category").value;
+        let image=document.getElementById("image").value;
+        let price=document.getElementById("price").value;
+        let gender=document.getElementById("gender").value;
+        let sold=document.getElementById("sold").value;
+        let obj={
+            name:name,
+            catagory:catagory,
+            image:image,
+            price:price,
+            gender:gender,
+            sold:sold
+        }
+       let url=" http://localhost:3000/products";
+       putData(obj)
+    }
+    function putData(obj){
+
+        fetch('http://localhost:3000/products', {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+
+    }
+</script>
